@@ -11,6 +11,10 @@
     <p>allname: {{allName}}</p>
     <button @click='RT()'>root:true</button>
     <button @click='RF()'>root: false</button>
+    <hr>
+    <p>xxx: {{xage}}</p>
+    <button @click='slowAge({num: 2})'>age+2</button>
+    <p>allname: {{allName}}</p>
   </div>
 </template>
 
@@ -21,17 +25,26 @@ export default {
   methods: {
     ...mapMutations({
       updateAge: 'updateAge',
-      DoubleAge: 'a/A_updateAge'
+      DoubleAge: 'a/A_updateAge',
+      slowAge:'b/B_updateAge'
     }),
     ...mapActions({
       updateAgeAsync: 'updateAgeAsync',
       RT: 'a/rootTrue',
-      RF: 'a/rootFalse'
+      RF: 'a/rootFalse',
+      BRT:'b/BrootTrue',
+      BRF:'b/BrootFalse'
     })
+  },
+  mounted(){
+    console.log(this.$store.state.b.BfirstName)
   },
   computed: {
     yjage () {
       return this.$store.state.a.age
+    },
+    xage () {
+      return this.$store.state.b.Bage
     },
     ...mapState({
       age: (state) => state.age,
@@ -39,7 +52,8 @@ export default {
     }),
     ...mapGetters({
       fullName: 'fullName',
-      allName: 'a/allName'
+      allName: 'a/allName',
+      xxxName: 'b/allNameB'
     })
   }
 }

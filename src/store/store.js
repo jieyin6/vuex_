@@ -7,6 +7,10 @@ import moduleAState from './moduleA/state'
 import moduleAMutations from './moduleA/mutations'
 import moduleAGetters from './moduleA/getters'
 import moduleAActions from './moduleA/actions'
+import moduleBState from './moduleB/state'
+import moduleBMutations from './moduleB/mutations'
+import moduleBGetters from './moduleB/getters'
+import moduleBActions from './moduleB/actions'
 export default () => {
   return new Vuex.Store({
     state: defaultState,
@@ -20,6 +24,13 @@ export default () => {
         mutations: moduleAMutations,
         getters: moduleAGetters,
         actions: moduleAActions
+      },
+      b: {
+        namespaced: true,
+        state: moduleBState,
+        mutations: moduleBMutations,
+        getters: moduleBGetters,
+        actions: moduleBActions
       }
     }
   })
